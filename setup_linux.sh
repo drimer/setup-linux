@@ -118,7 +118,7 @@ parse_arguments() {
 	case $1 in
 	    --help | -h) print_usage; exit 0;;
 	    --devel) check_root_permissions && ./setup_development_options.sh;;
-	    --update) $update_system=true;;
+	    --update) update_system=true;;
 	    --users) users="$(echo $2 | sed "s/,/ /g")"; shift;;
 	    *) echo "Invalid option: $1"; exit 1;;
 	esac
