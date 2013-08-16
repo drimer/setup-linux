@@ -10,9 +10,10 @@ esac
 
 
 install_vim() {
-    echo $installer install -y vim || return 1;
+    $installer install -y vim || return 1;
 
-    cat >>~/.vimrc <<-EOF
+    for user in $USERS; do
+	cat >>/home/$user/.vimrc <<-EOF
 
 " update window title
 set title
@@ -26,6 +27,7 @@ set ruler
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%79v.\+/
 EOF
+    done
 }
 
 
