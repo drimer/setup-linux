@@ -136,8 +136,8 @@ main() {
     install_config_files
     setup_bash_configuration
     run_user_scripts
-    [[ $setup_devel == true ]] && ./setup_development_options.sh
     [[ $update_system == true ]] && update_system
+    [[ $setup_devel == true ]] && ./setup_devel_tools.sh
 }
 
 main $*
