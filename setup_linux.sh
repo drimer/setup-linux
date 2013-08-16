@@ -21,7 +21,6 @@
 
 installer=""
 update_system=false
-users=$(who am i | cut -f1 -d" ")
 
 
 distro_discovery(){
@@ -52,7 +51,7 @@ install_command_line_software() {
 
 
 install_config_files() {
-    for user in $users; do
+    for user in $USERS; do
 	home_dir="/home/$user"
 	cp .vimrc $home_dir/.vimrc
     done
@@ -60,7 +59,7 @@ install_config_files() {
 
 
 setup_bash_configuration() {
-    for user in $users; do
+    for user in $USERS; do
 	home_dir="/home/$user"
 	mkdir -p $home_dir/bin/
 	[[ $(ls bin/* >/dev/null 2>&1) ]] && { \
@@ -119,11 +118,13 @@ parse_arguments() {
 	    --help | -h) print_usage; exit 0;;
 	    --devel) check_root_permissions && ./setup_development_options.sh;;
 	    --update) update_system=true;;
-	    --users) users="$(echo $2 | sed "s/,/ /g")"; shift;;
+	    --users) export USERS="$(echo $2 | sed "s/,/ /g")"; shift;;
 	    *) echo "Invalid option: $1"; exit 1;;
 	esac
 	shift
     done
+
+    [[ $USERS == "" ]] && export USERS=$(who am i | cut -f1 -d" ")
 }
 
 
