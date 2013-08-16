@@ -75,7 +75,7 @@ setup_bash_configuration() {
 
 # Configuration added by setup_install.sh
 export PATH=\$PATH:$home_dir/bin/
-export PYTHONPATH=$home_dir/python_lib/:$PYTHONPATH
+export PYTHONPATH=$home_dir/python_lib/:\$PYTHONPATH
 EOF
     done
 }
