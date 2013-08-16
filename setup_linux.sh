@@ -31,6 +31,7 @@ distro_discovery(){
     elif [[ "$LINUX_DISTRO" == fedora ]]; then
 	installer="yum"
     fi
+    export LINUX_DISTRO
 }
 
 
@@ -116,7 +117,7 @@ parse_arguments() {
     while [[ $* != "" ]]; do
 	case $1 in
 	    --help | -h) print_usage; exit 0;;
-	    --devel) ./setup_development_options.sh;;
+	    --devel) check_root_permissions && ./setup_development_options.sh;;
 	    --update) $update_system=true;;
 	    --users) users="$(echo $2 | sed "s/,/ /g")"; shift;;
 	    *) echo "Invalid option: $1"; exit 1;;
@@ -127,9 +128,9 @@ parse_arguments() {
 
 
 main() {
+    distro_discovery
     parse_arguments $*
     check_root_permissions
-    distro_discovery
     install_command_line_software
     install_config_files
     setup_bash_configuration
