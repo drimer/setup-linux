@@ -116,7 +116,7 @@ parse_arguments() {
     while [[ $* != "" ]]; do
 	case $1 in
 	    --help | -h) print_usage; exit 0;;
-	    --devel) check_root_permissions && ./setup_development_options.sh;;
+	    --devel) setup_devel=true;;
 	    --update) update_system=true;;
 	    --users) export USERS="$(echo $2 | sed "s/,/ /g")"; shift;;
 	    *) echo "Invalid option: $1"; exit 1;;
@@ -136,6 +136,7 @@ main() {
     install_config_files
     setup_bash_configuration
     run_user_scripts
+    [[ $setup_devel == true ]] && ./setup_development_options.sh
     [[ $update_system == true ]] && update_system
 }
 
