@@ -54,6 +54,7 @@ install_config_files() {
     for user in $USERS; do
 	home_dir="/home/$user"
 	cp .vimrc $home_dir/.vimrc
+    cp .screenrc $home_dir/.screenrc
     done
 }
 
