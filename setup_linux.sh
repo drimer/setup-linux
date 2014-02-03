@@ -37,6 +37,9 @@ delete_processed_files() {
 
 ensure_puppet_installed() {
     puppet >/dev/null 2>&1 || apt-get install -y puppet
+    [[ $(puppet module list | grep puppetlabs-stdlib) ]] || {
+	puppet module install puppetlabs/stdlib
+    }
 }
 
 main() {
