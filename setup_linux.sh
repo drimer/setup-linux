@@ -49,7 +49,8 @@ main() {
     ensure_puppet_installed
 
     process_in_files
-    puppet apply --modulepath=modules $1
+    MODULEPATH=$(puppet config print modulepath)
+    puppet apply --modulepath="$MODULEPATH:modules" $1
     delete_processed_files
 }
 
