@@ -1,0 +1,4 @@
+_emacs_cmd() {
+    emacs -nw $*
+}
+alias emacs="_emacs_cmd"
