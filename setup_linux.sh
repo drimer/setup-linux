@@ -7,138 +7,51 @@
 # desirable to make a clean installation, or you just want to install another
 # Linux distribution to play with it, and you don't want it to have the same
 # /home as your day-to-day Linux.
-# Because some people may want to use this script with the minimum software
-# installations, by default it will only install very basic and common
-# command-line tools (i.e. vim, nmap)
+
+# Different puppet manifests can be used (e.g. devel.pp) in order set up the
+# system with a different profile.
 
 # How to extend this script:
-# 1) Add to the bin/ folder the binaries you usally use. They will be copied
-#    to a new sub-folder in the home directory and it will be added to your
-#    $PATH
-# 2) Add scripts with the name convention "*-install.sh" to the same folder as
-#    this script file. These will be automatically run during the installation.
-# For further details of the options: please see `./setup_linux.sh`
+#   It uses Puppet manifests, and different modules can be specified. A top
+#   manifest file will include a different set of modules. You can:
+#   - Add your own modules and include them in an existing manifest file.
+#   - Add your own manifest file that includes the set of modules you are
+#     interested in.
 
-installer=""
-update_system=false
+usage() { echo "$0 <manifest.pp>"; }
 
-
-distro_discovery(){
-    LINUX_DISTRO=$(grep "^ID=" /etc/os-release | cut -d"=" -f2)
-    if [[ "$LINUX_DISTRO" == ubuntu ]]; then
-	installer="apt-get"
-    elif [[ "$LINUX_DISTRO" == fedora ]]; then
-	installer="yum"
-    fi
-    export LINUX_DISTRO
-}
-
-
-check_root_permissions(){
-    if [ $EUID -ne 0 ]; then
-	echo "You have no privileges to install software."
-	exit 1
-    fi
-}
-
-
-install_command_line_software() {
-    for package in linux-headers-`uname -r` screen htop vim \
-        ssh nmap python-pip unrar unzip; do
-	$installer install -y $package
+process_in_files() {
+    for in_file in $(find . -name "*.in"); do
+	processed_file=$(echo $in_file | sed -e 's,\.in,,g')
+	cp $in_file $processed_file
+	sed -e "s,@HOME_DIR@,$HOME,g" -i "$processed_file"
     done
 }
 
-
-install_config_files() {
-    for user in $USERS; do
-	home_dir="/home/$user"
-	cp .vimrc $home_dir/.vimrc
-    cp .screenrc $home_dir/.screenrc
-    done
+delete_processed_files() {
+    for in_file in $(find . -name "*.in"); do
+	processed_file=$(sed -e 's,\.in,,g' <(echo $in_file))
+	rm $processed_file
+    done    
 }
 
-
-setup_bash_configuration() {
-    for user in $USERS; do
-	home_dir="/home/$user"
-	mkdir -p $home_dir/bin/
-	[[ $(ls bin/* >/dev/null 2>&1) ]] && { \
-	    cp -rf bin/* $home_dir/bin/; chmod 755 $home_dir/bin/*; }
-
-	mkdir -p $home_dir/python_lib/
-	[[ $(ls python_lib/*.py >/dev/null 2>&1) ]] && { \
-	    cp -rf python_lib/*.py $home_dir/binpython_lib/;
-	    chmod 755 $home_dir/python_lib/*;
-	}
-
-	cat >>$home_dir/.bashrc <<-EOF
-
-# Configuration added by setup_install.sh
-export PATH=\$PATH:$home_dir/bin/
-export PYTHONPATH=$home_dir/python_lib/:\$PYTHONPATH
-EOF
-    done
+ensure_puppet_installed() {
+    puppet >/dev/null 2>&1 || apt-get install -y puppet
+    [[ $(puppet module list | grep puppetlabs-stdlib) ]] || {
+	puppet module install puppetlabs/stdlib
+    }
 }
-
-
-run_user_scripts() {
-    [[ $(ls *-install.sh  >/dev/null 2>&1) ]] || return
-    for f in $(ls *-install.sh); do
-	./$f >$f.stdout 2>$f.stderr
-	[[ $? -eq 0 ]] && rm $f.*
-    done
-}
-
-
-update_system() {
-    if [ $installer == apt-get ]; then
-	apt-get update
-	apt-get -y upgrade
-    elif [ $installer == yum ]; then
-	yum -y upgrade
-    fi
-}
-
-
-print_usage() {
-echo "Usage: script.sh [options]
-
-Options can be:
-    -h, --help:    Print this help
-    --devel:       Set up developer options (i.e. generate dore dump files)
-    --update:      Update the system software
-    --users:        Comma-separated list of users whose config files will be changed
-"
-}
-
-
-parse_arguments() {
-    while [[ $* != "" ]]; do
-	case $1 in
-	    --help | -h) print_usage; exit 0;;
-	    --devel) setup_devel=true;;
-	    --update) update_system=true;;
-	    --users) export USERS="$(echo $2 | sed "s/,/ /g")"; shift;;
-	    *) echo "Invalid option: $1"; exit 1;;
-	esac
-	shift
-    done
-
-    [[ $USERS == "" ]] && export USERS=$(who am i | cut -f1 -d" ")
-}
-
 
 main() {
-    distro_discovery
-    parse_arguments $*
-    check_root_permissions
-    install_command_line_software
-    install_config_files
-    setup_bash_configuration
-    run_user_scripts
-    [[ $update_system == true ]] && update_system
-    [[ $setup_devel == true ]] && ./setup_devel_tools.sh
+    [[ $# != 1 ]] && { usage; exit 1; }
+    [[ $EUID != 0 ]] && { echo "No root privileges"; exit 1; }
+
+    ensure_puppet_installed
+
+    process_in_files
+    MODULEPATH=$(puppet config print modulepath)
+    puppet apply --modulepath="$MODULEPATH:modules" $1
+    delete_processed_files
 }
 
 main $*

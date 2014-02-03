@@ -1,0 +1,25 @@
+class commandline {
+  package { 'build-essential':
+    ensure => installed,
+  }
+
+  file { "@HOME_DIR@/.vimrc":
+    ensure => present,
+    source => 'puppet:///modules/commandline/vimrc',
+  }
+
+  file { "@HOME_DIR@/.screenrc":
+    ensure => present,
+    source => 'puppet:///modules/commandline/screenrc',
+  }
+
+  file { "@HOME_DIR@/.commandline.bashrc":
+    ensure => present,
+    source => 'puppet:///modules/commandline/bashrc',
+  }
+
+  file_line { 'mybash_is_sourced':
+    path => '@HOME_DIR@/.bashrc',
+    line => 'source @HOME_DIR@/.commandline.bashrc',
+  }
+}
