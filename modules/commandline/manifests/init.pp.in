@@ -1,0 +1,15 @@
+class commandline {
+  package { 'build-essential':
+    ensure => installed,
+  }
+
+  file { "@HOME_DIR@/.vimrc":
+    ensure => present,
+    source => 'puppet:///modules/commandline/vimrc',
+  }
+
+  file { "@HOME_DIR@/.screenrc":
+    ensure => present,
+    source => 'puppet:///modules/commandline/screenrc',
+  }
+}
