@@ -2,3 +2,9 @@ _emacs_cmd() {
     emacs -nw $*
 }
 alias emacs="_emacs_cmd"
+
+
+_killstr() {
+    ps aux | grep $1 | awk '{ FS=" "; print $2 }' | xargs kill -s SIGTERM
+}
+alias killstr="_killstr"
