@@ -1,0 +1,6 @@
+class utils {
+  file { "@HOME_DIR@/bin/backup":
+    ensure => present,
+    source => 'puppet:///modules/utils/backup',
+  }
+}
