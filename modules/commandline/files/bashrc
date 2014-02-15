@@ -8,3 +8,9 @@ _killstr() {
     ps aux | grep $1 | awk '{ FS=" "; print $2 }' | xargs kill -s SIGTERM
 }
 alias killstr="_killstr"
+
+
+_tree() {
+    tree -L 2 $*
+}
+alias tree="_tree"
