@@ -14,3 +14,10 @@ _tree() {
     tree -L 2 $*
 }
 alias tree="_tree"
+
+
+mycd() {
+    cd "$1"
+    ls
+}
+alias cd="mycd"
