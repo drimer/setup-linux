@@ -21,3 +21,14 @@ mycd() {
     ls
 }
 alias cd="mycd"
+
+
+_infinite_ssh() {
+    remote_port=$1
+    target=$2
+    while true; do
+        autossh -C -N -R$remote_port:localhost:22 $target
+        sleep 10
+    done
+}
+alias infinite_ssh="_infinite_ssh"
