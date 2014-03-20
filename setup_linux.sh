@@ -35,8 +35,36 @@ delete_processed_files() {
     done    
 }
 
+install_latest_puppet() {
+    echo "Trying to install latest puppet"
+
+    distro=$(lsb_release -si)
+    case $distro in
+	"Ubuntu" | "LinuxMint")
+	    wget https://apt.puppetlabs.com/puppetlabs-release-precise.deb
+	    dpkg -i puppetlabs-release-precise.deb
+	    rm puppetlabs-release-precise.deb
+	    apt-get update
+	    apt-get install puppet
+	;;
+    esac
+}
+
+ensure_puppet_version() {
+    installed_version=$(puppet --version)
+
+    python -c \
+"from distutils.version import StrictVersion; \
+assert StrictVersion('$installed_version') >= StrictVersion('2.7.18')"
+
+    [[ $? != 0 ]] && { install_latest_puppet; }
+}
+
 ensure_puppet_installed() {
     puppet >/dev/null 2>&1 || apt-get install -y puppet
+
+    ensure_puppet_version
+
     [[ $(puppet module list | grep puppetlabs-stdlib) ]] || {
 	puppet module install puppetlabs/stdlib
     }
