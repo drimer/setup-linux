@@ -22,4 +22,9 @@ class commandline {
     path => '@HOME_DIR@/.bashrc',
     line => 'source @HOME_DIR@/.commandline.bashrc',
   }
+
+  file { "@HOME_DIR@/.pylintrc":
+    ensure => present,
+    source => 'puppet:///modules/commandline/pylintrc',
+  }
 }

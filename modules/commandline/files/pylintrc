@@ -1,0 +1,19 @@
+[MASTER]
+persistent=no
+init-hook=
+	import sys
+	from os.path import join
+
+	paths = [
+	      # TO ADD
+	]
+
+	sys.path.extend(paths)
+
+[REPORTS]
+output-format=parseable
+include-ids=yes
+reports=no
+
+[MESSAGES CONTROL]
+disable=C0111,C0103,I0011,W0312,W0604
