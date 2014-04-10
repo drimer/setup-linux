@@ -1,1 +1,3 @@
 include commandline
+include devel
+

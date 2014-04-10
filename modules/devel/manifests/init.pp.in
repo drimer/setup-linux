@@ -1,0 +1,25 @@
+class devel {
+  package { "python-pip":
+    ensure => installed,
+  }
+
+  exec { "pip-install-virtualenv":
+    command => "/usr/bin/pip install virtualenv",
+  }
+
+  exec { "pip-install-virtualenvwrapper":
+    command => "/usr/bin/pip install virtualenvwrapper",
+    require => Exec["pip-install-virtualenv"],
+    creates => "/usr/local/bin/virtualenvwrapper.sh",
+  }
+
+  file_line { 'python_env_diretory_env_variable':
+    path => '@HOME_DIR@/.bashrc',
+    line => 'export WORKON_HOME=~/PythonEnvs',
+  }
+
+  file_line { 'virtualenvwrapper_is_sourced':
+    path => '@HOME_DIR@/.bashrc',
+    line => 'source /usr/local/bin/virtualenvwrapper.sh',
+  }
+}
