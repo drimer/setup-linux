@@ -1,7 +1,9 @@
 class devel {
   package {
     "python-pip": ensure => installed;
-    "emacs":      ensure => installed;
+    "emacs": ensure => installed;
+    "gitk": ensure => installed;
+    "git-gui": ensure => installed;
   }
 
   exec { "pip-install-virtualenv":
