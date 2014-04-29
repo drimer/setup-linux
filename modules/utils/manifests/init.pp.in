@@ -3,4 +3,10 @@ class utils {
     ensure => present,
     source => 'puppet:///modules/utils/backup',
   }
+
+  package {
+    "texlive-latex-base"  : ensure => installed;
+    "texlive-pictures"    : ensure => installed;
+    "texlive-latex-extra" : ensure => installed;
+  }
 }
