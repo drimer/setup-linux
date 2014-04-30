@@ -9,4 +9,9 @@ class utils {
     "texlive-pictures"    : ensure => installed;
     "texlive-latex-extra" : ensure => installed;
   }
+
+  file_line { 'enable_X11_forwarding':
+    path => '/etc/ssh/ssh_config',
+    line => 'ForwardX11 yes',
+  }
 }
