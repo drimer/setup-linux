@@ -1,6 +1,7 @@
 class commandline {
   package {
     'build-essential': ensure => installed;
+    'tree': ensure => installed;
     'nano': ensure => absent;
   }
 
