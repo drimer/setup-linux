@@ -32,3 +32,20 @@ _infinite_ssh() {
     done
 }
 alias infinite_ssh="_infinite_ssh"
+
+
+log_prompt_command() {
+    exit_code=$?
+
+    all_logs_directory="$HOME/all_bash_history"
+    month_directory="$all_logs_directory/$(date +%Y_%m)"
+    mkdir -p $month_directory
+    log_file="$month_directory/$(date +%d)"
+
+    echo "cmd=\"$(history | tail -1 | cut -c 8-)\" "\
+         "exit_code=$exit_code "\
+         "pwd=\"$(pwd)\"" \
+         "time=\"$(date +%H:%M:%S)\" "\
+    >>$log_file
+}
+export PROMPT_COMMAND="log_prompt_command"
