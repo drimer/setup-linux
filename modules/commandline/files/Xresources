@@ -1,0 +1,3 @@
+*VT100*Translations:       #override  \
+  <Key>Home: string(0x01)\n\
+  <Key>End:  string(0x05)

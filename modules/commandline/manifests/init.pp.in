@@ -29,4 +29,9 @@ class commandline {
     ensure => present,
     source => 'puppet:///modules/commandline/pylintrc',
   }
+
+  file { "@HOME_DIR@/.Xresources":
+    ensure => present,
+    source => 'puppet:///modules/commandline/Xresources',
+  }
 }
