@@ -1,5 +1,5 @@
 _emacs_cmd() {
-    emacs -nw $*
+    TERM=xterm emacs -nw $*
 }
 alias emacs="_emacs_cmd"
 
