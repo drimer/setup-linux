@@ -18,6 +18,15 @@
 #   - Add your own manifest file that includes the set of modules you are
 #     interested in.
 
+# Dependencies:
+# - puppet >= 2.7.18 (1)
+
+
+# The following links provide information on how to meet this script's
+# dependencies:
+#
+# http://puppetlabs.com/
+
 usage() { echo "$0 <manifest.pp>"; }
 
 process_in_files() {
@@ -35,21 +44,6 @@ delete_processed_files() {
     done    
 }
 
-install_latest_puppet() {
-    echo "Trying to install latest puppet"
-
-    distro=$(lsb_release -si)
-    case $distro in
-	"Ubuntu" | "LinuxMint")
-	    wget https://apt.puppetlabs.com/puppetlabs-release-precise.deb
-	    dpkg -i puppetlabs-release-precise.deb
-	    rm puppetlabs-release-precise.deb
-	    apt-get update
-	    apt-get install puppet
-	;;
-    esac
-}
-
 ensure_puppet_version() {
     installed_version=$(puppet --version)
 
@@ -57,11 +51,20 @@ ensure_puppet_version() {
 "from distutils.version import StrictVersion; \
 assert StrictVersion('$installed_version') >= StrictVersion('2.7.18')"
 
-    [[ $? != 0 ]] && { install_latest_puppet; }
+    [[ $? != 0 ]] && {
+        echo "Installed puppet version is $installed_version. I need it to be" \
+             "older than 2.7.18 so that I can use the command 'puppet" \
+             "module'.";
+        exit -1;
+    }
 }
 
 ensure_puppet_installed() {
-    puppet >/dev/null 2>&1 || apt-get install -y puppet
+    puppet >/dev/null 2>&1 || {
+        echo "The command 'puppet' not found in your system. Please make sure" \
+             "it is installed.";
+	exit -1;
+    }
 
     ensure_puppet_version
 
