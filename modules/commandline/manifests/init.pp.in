@@ -3,6 +3,7 @@ class commandline {
     'build-essential': ensure => installed;
     'tree': ensure => installed;
     'nano': ensure => absent;
+    'tmux': ensure => installed;
   }
 
   file { "@HOME_DIR@/.vimrc":
@@ -33,5 +34,10 @@ class commandline {
   file { "@HOME_DIR@/.Xresources":
     ensure => present,
     source => 'puppet:///modules/commandline/Xresources',
+  }
+
+  file { "@HOME_DIR@/.tmux.conf":
+    ensure => present,
+    source => 'puppet:///modules/commandline/tmuxconf',
   }
 }
