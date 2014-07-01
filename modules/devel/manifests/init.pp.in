@@ -4,6 +4,7 @@ class devel {
     "emacs": ensure => installed;
     "gitk": ensure => installed;
     "git-gui": ensure => installed;
+    "python-epydoc": ensure => installed;
   }
 
   exec { "pip-install-virtualenv":
