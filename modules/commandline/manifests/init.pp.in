@@ -40,4 +40,14 @@ class commandline {
     ensure => present,
     source => 'puppet:///modules/commandline/tmuxconf',
   }
+
+  file { "@HOME_DIR@/.my_bash_profile":
+    ensure => present,
+    source => 'puppet:///modules/commandline/bash_profile',
+  }
+
+  file_line { "my_bash_profile_is_sourced":
+    path => '@HOME_DIR@/.bash_profile',
+    line => 'source @HOME_DIR@/.my_bash_profile',
+  }
 }
