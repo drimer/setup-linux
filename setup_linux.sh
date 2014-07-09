@@ -73,6 +73,11 @@ ensure_puppet_installed() {
     }
 }
 
+print_manual_setup() {
+    echo "Things that need to be manually customised by you:"
+    echo "1) Add, at least, one window to ~/.tmux.conf"
+}
+
 main() {
     [[ $# != 1 ]] && { usage; exit 1; }
     [[ $EUID != 0 ]] && { echo "No root privileges"; exit 1; }
@@ -83,6 +88,8 @@ main() {
     MODULEPATH=$(puppet config print modulepath)
     puppet apply --modulepath="$MODULEPATH:modules" $1
     delete_processed_files
+
+    print_manual_setup
 }
 
 main $*
