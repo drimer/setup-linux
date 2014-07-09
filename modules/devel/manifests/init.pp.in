@@ -5,6 +5,7 @@ class devel {
     "gitk": ensure => installed;
     "git-gui": ensure => installed;
     "python-epydoc": ensure => installed;
+    "pylint": ensure => installed;
   }
 
   exec { "pip-install-virtualenv":
@@ -25,5 +26,10 @@ class devel {
   file_line { 'virtualenvwrapper_is_sourced':
     path => '@HOME_DIR@/.bashrc',
     line => 'source /usr/local/bin/virtualenvwrapper.sh',
+  }
+
+  file { "@HOME_DIR@/.emacs":
+    ensure => present,
+    source => 'puppet:///modules/devel/emacs',
   }
 }
