@@ -23,3 +23,24 @@ bind C-a send-prefix
 
   # status right options
   set -g status-right '#[fg=green][#[fg=blue]%Y-%m-%d #[fg=white]%H:%M#[default]  #($HOME/bin/battery)#[fg=green]]'
+
+
+# Define initial windows and panes
+bind-key r respawn-window
+
+  new-session true
+
+  # set global r-o-e so that initial window of initial session gets it
+  set -g set-remain-on-exit on
+
+  # create the windows we really want
+  # Here go the windows and panes. Example:
+  # new-window -n rtorrent rtorrent
+  # new-window -n emacs "TERM=xterm emacs -nw"
+  # new-window -n battlefield bash
+
+  # restore global r-o-e
+  set -g set-remain-on-exit off
+
+  # let session r-o-e inherit from global value for future windows
+  set -u set-remain-on-exit
