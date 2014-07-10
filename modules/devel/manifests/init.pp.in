@@ -1,11 +1,11 @@
 class devel {
   package {
-    "python-pip": ensure => installed;
     "emacs": ensure => installed;
     "gitk": ensure => installed;
     "git-gui": ensure => installed;
-    "python-epydoc": ensure => installed;
     "pylint": ensure => installed;
+    "python-epydoc" : ensure => installed;
+    "python-pip": ensure => installed;
   }
 
   exec { "pip-install-virtualenv":

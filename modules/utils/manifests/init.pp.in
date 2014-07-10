@@ -5,9 +5,9 @@ class utils {
   }
 
   package {
-    "texlive-latex-base"  : ensure => installed;
-    "texlive-pictures"    : ensure => installed;
-    "texlive-latex-extra" : ensure => installed;
+    "texlive-latex-base": ensure => installed;
+    "texlive-latex-extra": ensure => installed;
+    "texlive-pictures": ensure => installed;
   }
 
   file_line { 'enable_X11_forwarding':
