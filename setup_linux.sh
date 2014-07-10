@@ -80,7 +80,7 @@ print_manual_setup() {
 
 main() {
     [[ $# != 1 ]] && { usage; exit 1; }
-    [[ $EUID != 0 ]] && { echo "No root privileges"; exit 1; }
+    [[ $EUID != 0 ]] && { echo "WARNING: No root privileges. Some things will not be done."; }
 
     ensure_puppet_installed
 
