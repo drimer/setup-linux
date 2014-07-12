@@ -32,4 +32,14 @@ class devel {
     ensure => present,
     source => 'puppet:///modules/devel/emacs',
   }
+
+  file { "@HOME_DIR@/.devel.bashrc":
+    ensure => present,
+    source => 'puppet:///modules/devel/bashrc',
+  }
+
+  file_line { 'devel_bashrc_is_sourced':
+    path => '@HOME_DIR@/.bashrc',
+    line => 'source @HOME_DIR@/.devel.bashrc',
+  }
 }
