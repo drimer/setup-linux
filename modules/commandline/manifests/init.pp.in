@@ -1,7 +1,9 @@
 class commandline {
   package {
     'build-essential': ensure => installed;
+    'finch': ensure => installed;
     'nano': ensure => absent;
+    'nload': ensure => absent;
     'tree': ensure => installed;
     'tmux': ensure => installed;
   }
