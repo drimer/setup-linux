@@ -14,4 +14,15 @@ class utils {
     path => '/etc/ssh/ssh_config',
     line => 'ForwardX11 yes',
   }
+
+  file { "@HOME_DIR@/install_wallpapoz":
+    ensure => present,
+    mode => 755,
+    source => 'puppet:///modules/utils/install_wallpapoz',
+  }
+
+  exec { "install_wallpapoz":
+    command => '@HOME_DIR@/install_wallpapoz',
+    require => File['@HOME_DIR@/install_wallpapoz'],
+  }
 }

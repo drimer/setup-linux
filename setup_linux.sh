@@ -76,6 +76,8 @@ ensure_puppet_installed() {
 print_manual_setup() {
     echo "Things that need to be manually customised by you:"
     echo "1) Add, at least, one window to ~/.tmux.conf"
+    echo "And if you wish:"
+    echo "2) Remove ~/install_wallpapoz"
 }
 
 main() {
