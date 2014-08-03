@@ -3,6 +3,7 @@ class devel {
     "emacs": ensure => installed;
     "gitk": ensure => installed;
     "git-gui": ensure => installed;
+    "meld": ensure => installed;
     "pylint": ensure => installed;
     "python-epydoc" : ensure => installed;
     "python-pip": ensure => installed;
@@ -44,5 +45,16 @@ class devel {
     path => '@HOME_DIR@/.bashrc',
     line => 'source @HOME_DIR@/.devel.bashrc',
     require => File['@HOME_DIR@/.bashrc'],
+  }
+
+  file { "/usr/bin/my_git_diff":
+    ensure => present,
+    source => 'puppet:///modules/devel/my_git_diff',
+    mode => 755,
+  }
+
+  file { "@HOME_DIR@/.gitconfig":
+    ensure => present,
+    source => 'puppet:///modules/devel/gitconfig',
   }
 }
