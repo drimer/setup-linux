@@ -4,6 +4,7 @@ class commandline {
     'finch': ensure => installed;
     'nano': ensure => absent;
     'nload': ensure => absent;
+    'rtorrent': ensure => installed;
     'tree': ensure => installed;
     'tmux': ensure => installed;
   }
@@ -53,5 +54,26 @@ class commandline {
     path => '@HOME_DIR@/.bash_profile',
     line => 'source @HOME_DIR@/.my_bash_profile',
     require => File['@HOME_DIR@/.bash_profile'],
+  }
+
+  file { "@HOME_DIR@/.rtorrent.rc":
+    ensure => present,
+    source => 'puppet:///modules/commandline/rtorrentrc',
+  }
+
+  file { "@HOME_DIR@/Downloads/rtorrent_watch":
+    ensure => 'directory',
+  }
+
+  file { "@HOME_DIR@/Downloads/rtorrent_downloading":
+    ensure => 'directory',
+  }
+
+  file { "@HOME_DIR@/Downloads/rtorrent_downloaded":
+    ensure => 'directory',
+  }
+
+  file { "@HOME_DIR@/Downloads/rtorrent_session":
+    ensure => 'directory',
   }
 }

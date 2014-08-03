@@ -78,8 +78,9 @@ print_manual_setup() {
     echo "1) Add, at least, one window to ~/.tmux.conf"
     echo "2) Add pictures to wallpapoz"
     echo "3) Log in with your user on Chromium to synchronize bookmarks and/or other things."
+    echo "4) Make sure you have the correct permissions in the directories ~/Downloads/rtorrent_*"
     echo "And if you wish:"
-    echo "4) Remove ~/install_wallpapoz"
+    echo "5) Remove ~/install_wallpapoz"
 }
 
 main() {
