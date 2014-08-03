@@ -49,3 +49,6 @@ log_prompt_command() {
     >>$log_file
 }
 export PROMPT_COMMAND="log_prompt_command"
+
+
+export PATH=$HOME/bin:$PATH
