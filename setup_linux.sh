@@ -76,8 +76,10 @@ ensure_puppet_installed() {
 print_manual_setup() {
     echo "Things that need to be manually customised by you:"
     echo "1) Add, at least, one window to ~/.tmux.conf"
+    echo "2) Add pictures to wallpapoz"
+    echo "3) Log in with your user on Chromium to synchronize bookmarks and/or other things."
     echo "And if you wish:"
-    echo "2) Remove ~/install_wallpapoz"
+    echo "4) Remove ~/install_wallpapoz"
 }
 
 main() {
