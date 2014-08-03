@@ -8,6 +8,8 @@ class utils {
     "calibre": ensure => installed;
     "chromium-browser": ensure => installed;
     "mediatomb": ensure => installed;
+    "rdiff": ensure => installed;
+    "terminator": ensure => installed;
     "texlive-latex-base": ensure => installed;
     "texlive-latex-extra": ensure => installed;
     "texlive-pictures": ensure => installed;
