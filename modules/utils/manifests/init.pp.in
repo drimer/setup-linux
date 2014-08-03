@@ -28,4 +28,15 @@ class utils {
     command => '@HOME_DIR@/install_wallpapoz',
     require => File['@HOME_DIR@/install_wallpapoz'],
   }
+
+  file { "@HOME_DIR@/install_jdownloader":
+    ensure => present,
+    mode => 755,
+    source => 'puppet:///modules/utils/install_jdownloader',
+  }
+
+  exec { "install_jdownloader":
+    command => '@HOME_DIR@/install_jdownloader',
+    require => File['@HOME_DIR@/install_jdownloader'],
+  }
 }

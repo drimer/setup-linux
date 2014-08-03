@@ -87,6 +87,7 @@ main() {
     ensure_puppet_installed
 
     process_in_files
+    echo "During setup, some windows will pop up, which will require manual intervention so that the installation of some software can be completed."
     MODULEPATH=$(puppet config print modulepath)
     puppet apply --modulepath="$MODULEPATH:modules" $1
     delete_processed_files
