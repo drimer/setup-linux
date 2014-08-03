@@ -24,6 +24,7 @@ class commandline {
   file_line { 'mybash_is_sourced':
     path => '@HOME_DIR@/.bashrc',
     line => 'source @HOME_DIR@/.commandline.bashrc',
+    require => File['@HOME_DIR@/.bashrc'],
   }
 
   file { "@HOME_DIR@/.pylintrc":
@@ -49,5 +50,6 @@ class commandline {
   file_line { "my_bash_profile_is_sourced":
     path => '@HOME_DIR@/.bash_profile',
     line => 'source @HOME_DIR@/.my_bash_profile',
+    require => File['@HOME_DIR@/.bash_profile'],
   }
 }

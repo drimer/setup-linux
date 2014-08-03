@@ -21,11 +21,13 @@ class devel {
   file_line { 'python_env_diretory_env_variable':
     path => '@HOME_DIR@/.bashrc',
     line => 'export WORKON_HOME=~/PythonEnvs',
+    require => File['@HOME_DIR@/.bashrc'],
   }
 
   file_line { 'virtualenvwrapper_is_sourced':
     path => '@HOME_DIR@/.bashrc',
     line => 'source /usr/local/bin/virtualenvwrapper.sh',
+    require => File['@HOME_DIR@/.bashrc'],
   }
 
   file { "@HOME_DIR@/.emacs":
@@ -41,5 +43,6 @@ class devel {
   file_line { 'devel_bashrc_is_sourced':
     path => '@HOME_DIR@/.bashrc',
     line => 'source @HOME_DIR@/.devel.bashrc',
+    require => File['@HOME_DIR@/.bashrc'],
   }
 }

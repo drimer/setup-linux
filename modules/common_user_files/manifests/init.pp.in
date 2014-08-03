@@ -1,0 +1,9 @@
+class common_user_files {
+  file { "@HOME_DIR@/.bashrc":
+    ensure => present,
+  }
+
+  file { "@HOME_DIR@/.bash_profile":
+    ensure => present,
+  }
+}
