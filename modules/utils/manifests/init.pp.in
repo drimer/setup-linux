@@ -5,9 +5,12 @@ class utils {
   }
 
   package {
+    "calibre": ensure => installed;
+    "chromium-browser": ensure => installed;
     "texlive-latex-base": ensure => installed;
     "texlive-latex-extra": ensure => installed;
     "texlive-pictures": ensure => installed;
+    "wireshark": ensure => installed;
   }
 
   file_line { 'enable_X11_forwarding':
