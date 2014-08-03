@@ -27,7 +27,7 @@
 #
 # http://puppetlabs.com/
 
-usage() { echo "$0 <manifest.pp>"; }
+usage() { echo "$0 <manifest.pp> [<manifest2.pp>, ...]"; }
 
 process_in_files() {
     for in_file in $(find . -name "*.in"); do
@@ -81,7 +81,7 @@ print_manual_setup() {
 }
 
 main() {
-    [[ $# != 1 ]] && { usage; exit 1; }
+    [[ $# < 1 ]] && { usage; exit 1; }
     [[ $EUID != 0 ]] && { echo "WARNING: No root privileges. Some things will not be done."; }
 
     ensure_puppet_installed
@@ -89,7 +89,12 @@ main() {
     process_in_files
     echo "During setup, some windows will pop up, which will require manual intervention so that the installation of some software can be completed."
     MODULEPATH=$(puppet config print modulepath)
-    puppet apply --modulepath="$MODULEPATH:modules" $1
+
+    for puppet_file in $*; do
+	echo "Applying file $puppet_file"
+        puppet apply --modulepath="$MODULEPATH:modules" $puppet_file
+    done
+
     delete_processed_files
 
     print_manual_setup
