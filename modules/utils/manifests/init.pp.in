@@ -7,6 +7,7 @@ class utils {
   package {
     "calibre": ensure => installed;
     "chromium-browser": ensure => installed;
+    "mediatomb": ensure => installed;
     "texlive-latex-base": ensure => installed;
     "texlive-latex-extra": ensure => installed;
     "texlive-pictures": ensure => installed;
@@ -38,5 +39,15 @@ class utils {
   exec { "install_jdownloader":
     command => '@HOME_DIR@/install_jdownloader',
     require => File['@HOME_DIR@/install_jdownloader'],
+  }
+
+  file { '@HOME_DIR@/.mediatomb':
+    ensure => 'directory';
+  }
+
+  file { "@HOME_DIR@/.mediatomb/config.xml":
+    ensure => present,
+    source => 'puppet:///modules/utils/mediatomb_config_xml',
+    require => File['@HOME_DIR@/.mediatomb'],
   }
 }
