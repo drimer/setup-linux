@@ -1,9 +1,11 @@
 class commandline {
   package {
+    'autossh': ensure => installed;
     'build-essential': ensure => installed;
     'finch': ensure => installed;
     'nano': ensure => absent;
     'nload': ensure => absent;
+    'openssh-server': ensure => installed;
     'rtorrent': ensure => installed;
     'tree': ensure => installed;
     'tmux': ensure => installed;
