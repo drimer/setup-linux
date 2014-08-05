@@ -1,0 +1,60 @@
+class devel {
+  package {
+    "emacs": ensure => installed;
+    "gitk": ensure => installed;
+    "git-gui": ensure => installed;
+    "meld": ensure => installed;
+    "pylint": ensure => installed;
+    "python-epydoc" : ensure => installed;
+    "python-pip": ensure => installed;
+  }
+
+  exec { "pip-install-virtualenv":
+    command => "/usr/bin/pip install virtualenv",
+  }
+
+  exec { "pip-install-virtualenvwrapper":
+    command => "/usr/bin/pip install virtualenvwrapper",
+    require => Exec["pip-install-virtualenv"],
+    creates => "/usr/local/bin/virtualenvwrapper.sh",
+  }
+
+  file_line { 'python_env_diretory_env_variable':
+    path => '@HOME_DIR@/.bashrc',
+    line => 'export WORKON_HOME=~/PythonEnvs',
+    require => File['@HOME_DIR@/.bashrc'],
+  }
+
+  file_line { 'virtualenvwrapper_is_sourced':
+    path => '@HOME_DIR@/.bashrc',
+    line => 'source /usr/local/bin/virtualenvwrapper.sh',
+    require => File['@HOME_DIR@/.bashrc'],
+  }
+
+  file { "@HOME_DIR@/.emacs":
+    ensure => present,
+    source => 'puppet:///modules/devel/emacs',
+  }
+
+  file { "@HOME_DIR@/.devel.bashrc":
+    ensure => present,
+    source => 'puppet:///modules/devel/bashrc',
+  }
+
+  file_line { 'devel_bashrc_is_sourced':
+    path => '@HOME_DIR@/.bashrc',
+    line => 'source @HOME_DIR@/.devel.bashrc',
+    require => File['@HOME_DIR@/.bashrc'],
+  }
+
+  file { "/usr/bin/my_git_diff":
+    ensure => present,
+    source => 'puppet:///modules/devel/my_git_diff',
+    mode => 755,
+  }
+
+  file { "@HOME_DIR@/.gitconfig":
+    ensure => present,
+    source => 'puppet:///modules/devel/gitconfig',
+  }
+}
