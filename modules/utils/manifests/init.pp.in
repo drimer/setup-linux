@@ -14,6 +14,8 @@ class utils {
     "texlive-latex-base": ensure => installed;
     "texlive-latex-extra": ensure => installed;
     "texlive-pictures": ensure => installed;
+    "totem": ensure => purged;
+    "vlc": ensure => installed;
     "wine": ensure => installed;
     "wireshark": ensure => installed;
   }
