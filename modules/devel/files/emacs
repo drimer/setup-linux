@@ -21,3 +21,5 @@
         (if help (message "%s" help)))))
 
 (add-hook 'post-command-hook 'my-flymake-show-help)
+
+(global-set-key (kbd "M-r") 'revert-buffer) ; Alt+r
