@@ -24,3 +24,8 @@ git-diff-branch() {
 	echo "Can't do it";
     }
 }
+
+_gsfc() {
+    git submodule foreach "git checkout $1 || :"
+}
+alias gsfc="_gsfc"
