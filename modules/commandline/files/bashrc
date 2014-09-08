@@ -34,6 +34,12 @@ _infinite_ssh() {
 alias infinite_ssh="_infinite_ssh"
 
 
+_fnd() {
+    find . -name "*$1*"
+}
+alias fnd="_fnd"
+
+
 log_prompt_command() {
     exit_code=$?
 
