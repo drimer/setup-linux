@@ -78,4 +78,13 @@ class commandline {
   file { "@HOME_DIR@/Downloads/rtorrent_session":
     ensure => 'directory',
   }
+
+  file { "@HOME_DIR@/.personal.bashrc":
+    ensure => present,
+  }
+
+  file_line { "personal_bashrc_is_sourced":
+    path => '@HOME_DIR@/.bashrc',
+    line => 'source @HOME_DIR@/.personal.bashrc',
+  }
 }
