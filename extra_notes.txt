@@ -1,0 +1,10 @@
+============= EXTRA NOTES =============
+
+If you want emacs to use tabs instead of whitespaces in python mode, add the
+following lines to your ~/.emacs:
+
+(defun my-python-mode-hook ()
+  (setq indent-tabs-mode t)
+  (setq tab-width 4))
+(add-hook 'python-mode-hook 'my-python-mode-hook)
+
