@@ -14,16 +14,19 @@ class commandline {
   file { "@HOME_DIR@/.vimrc":
     ensure => present,
     source => 'puppet:///modules/commandline/vimrc',
+    owner => '@USERNAME@',
   }
 
   file { "@HOME_DIR@/.screenrc":
     ensure => present,
     source => 'puppet:///modules/commandline/screenrc',
+    owner => '@USERNAME@',
   }
 
   file { "@HOME_DIR@/.commandline.bashrc":
     ensure => present,
     source => 'puppet:///modules/commandline/bashrc',
+    owner => '@USERNAME@',
   }
 
   file_line { 'mybash_is_sourced':
@@ -35,6 +38,7 @@ class commandline {
   file { "@HOME_DIR@/.pylintrc":
     ensure => present,
     source => 'puppet:///modules/commandline/pylintrc',
+    owner => '@USERNAME@',
   }
 
   file { "@HOME_DIR@/.Xresources":
@@ -45,11 +49,13 @@ class commandline {
   file { "@HOME_DIR@/.tmux.conf":
     ensure => present,
     source => 'puppet:///modules/commandline/tmuxconf',
+    owner => '@USERNAME@',
   }
 
   file { "@HOME_DIR@/.my_bash_profile":
     ensure => present,
     source => 'puppet:///modules/commandline/bash_profile',
+    owner => '@USERNAME@',
   }
 
   file_line { "my_bash_profile_is_sourced":
@@ -65,22 +71,27 @@ class commandline {
 
   file { "@HOME_DIR@/Downloads/rtorrent_watch":
     ensure => 'directory',
+    owner => '@USERNAME@',
   }
 
   file { "@HOME_DIR@/Downloads/rtorrent_downloading":
     ensure => 'directory',
+    owner => '@USERNAME@',
   }
 
   file { "@HOME_DIR@/Downloads/rtorrent_downloaded":
     ensure => 'directory',
+    owner => '@USERNAME@',
   }
 
   file { "@HOME_DIR@/Downloads/rtorrent_session":
     ensure => 'directory',
+    owner => '@USERNAME@',
   }
 
   file { "@HOME_DIR@/.personal.bashrc":
     ensure => present,
+    owner => '@USERNAME@',
   }
 
   file_line { "personal_bashrc_is_sourced":

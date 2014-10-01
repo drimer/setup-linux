@@ -34,6 +34,7 @@ process_in_files() {
 	processed_file=$(echo $in_file | sed -e 's,\.in,,g')
 	cp $in_file $processed_file
 	sed -e "s,@HOME_DIR@,$HOME,g" -i "$processed_file"
+	sed -e "s,@USERNAME@,$USER,g" -i "$processed_file"
     done
 }
 

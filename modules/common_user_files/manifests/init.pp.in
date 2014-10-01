@@ -1,17 +1,21 @@
 class common_user_files {
   file { "@HOME_DIR@/.bashrc":
     ensure => present,
+    owner => '@USERNAME@',
   }
 
   file { "@HOME_DIR@/.bash_profile":
     ensure => present,
+    owner => '@USERNAME@',
   }
 
   file { "@HOME_DIR@/src":
     ensure => "directory",
+    owner => '@USERNAME@',
   }
 
   file { "@HOME_DIR@/bin":
     ensure => "directory",
+    owner => '@USERNAME@',
   }
 }

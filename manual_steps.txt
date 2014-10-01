@@ -4,6 +4,6 @@ Things that need to be manually customised by you:
 1) Add, at least, one window to ~/.tmux.conf
 2) Add pictures to wallpapoz
 3) Log in with your user on Chromium to synchronize bookmarks and/or other things.
-4) Make sure you have the correct permissions in the directories ~/Downloads/rtorrent_*
+
 And if you wish:
 5) Remove ~/install_wallpapoz
