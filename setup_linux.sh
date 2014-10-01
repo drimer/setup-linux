@@ -76,6 +76,7 @@ ensure_puppet_installed() {
 
 print_manual_setup() {
     cat manual_steps.txt
+    echo ""
     cat extra_notes.txt
 }
 
