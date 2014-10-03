@@ -40,6 +40,12 @@ _fnd() {
 alias fnd="_fnd"
 
 
+_fuck() {
+    sudo $(history -p !!)
+}
+alias fuck="_fuck"
+
+
 log_prompt_command() {
     exit_code=$?
 
