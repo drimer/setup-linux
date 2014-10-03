@@ -29,3 +29,5 @@ _gsfc() {
     git submodule foreach "git checkout $1 || :"
 }
 alias gsfc="_gsfc"
+
+alias gsf="git submodule foreach"
