@@ -27,7 +27,7 @@ session = ~/Downloads/rtorrent_session
 # deleted.
 schedule = watch_directory,0,10,load_start=~/Downloads/rtorrent_watch/*.torrent
 schedule = watch_dropbox_dir,0,10,load_start=~/Dropbox/rtorrent_watch/*.torrent
-system.method.set_key = event.download.finished,move_complete,"execute=mv,-u,$d.get_base_path=,~/Downloads/rtorrent_downloaded;d.set_directory=~/Downloads/rtorrent_downloaded"
+system.method.set_key = event.download.finished,move_complete,"execute=mv,-u,$d.get_base_path=,~/Downloads;d.set_directory=~/Downloads"
 system.method.set_key = event.download.inserted_new,remove_torrent,"execute=rm,$d.get_tied_to_file="
 
 # Close torrents when diskspace is low.
