@@ -82,6 +82,20 @@ print_manual_setup() {
     cat extra_notes.txt
 }
 
+apply_patches() {
+    puppet_file=$1
+
+    if [[ "$puppet_file" == "devel.pp" ]]; then
+	echo "Applying patches related to $puppet_file"
+	git_user_file="$HOME/.gitconfig.extra"
+	[[ -s $git_user_file ]] && [[ -z "$(grep '\[user\]' $HOME/.gitconfig)" ]] && {
+	    echo "Patching ~/.gitconfig"
+	    echo "" >>$HOME/.gitconfig
+	    cat $git_user_file >>$HOME/.gitconfig
+	}
+    fi
+}
+
 main() {
     [[ $# < 1 ]] && { usage; exit 1; }
     [[ $EUID != 0 ]] && { echo "WARNING: No root privileges. Some things will not be done."; }
@@ -95,6 +109,7 @@ main() {
     for puppet_file in $*; do
 	echo "Applying file $puppet_file"
         puppet apply --modulepath="$MODULEPATH:modules" $puppet_file
+	apply_patches $puppet_file
     done
 
     delete_processed_files
