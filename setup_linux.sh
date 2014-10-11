@@ -30,11 +30,13 @@
 usage() { echo "$0 <manifest.pp> [<manifest2.pp>, ...]"; }
 
 process_in_files() {
+    [[ -n $SUDO_USER ]] && username=$SUDO_USER || username=$USER
+
     for in_file in $(find . -name "*.in"); do
 	processed_file=$(echo $in_file | sed -e 's,\.in,,g')
 	cp $in_file $processed_file
 	sed -e "s,@HOME_DIR@,$HOME,g" -i "$processed_file"
-	sed -e "s,@USERNAME@,$USER,g" -i "$processed_file"
+	sed -e "s,@USERNAME@,$username,g" -i "$processed_file"
     done
 }
 
