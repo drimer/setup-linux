@@ -9,6 +9,7 @@ class utils {
     "calibre": ensure => installed;
     "chromium-browser": ensure => installed;
     "mediatomb": ensure => installed;
+    "opera": ensure => installed;
     "rdiff": ensure => installed;
     "sshpass": ensure=> installed;
     "terminator": ensure => installed;
