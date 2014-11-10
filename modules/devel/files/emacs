@@ -23,3 +23,11 @@
 (add-hook 'post-command-hook 'my-flymake-show-help)
 
 (global-set-key (kbd "M-r") 'revert-buffer) ; Alt+r
+
+(global-set-key
+  (kbd "C-c ipdb")
+  (lambda () (interactive)  (insert "import ipdb; ipdb.set_trace()")))
+
+(global-set-key
+  (kbd "C-c ifmain")
+  (lambda () (interactive) (insert "if __name__ == '__main__':")))
