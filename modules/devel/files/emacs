@@ -31,3 +31,7 @@
 (global-set-key
   (kbd "C-c ifmain")
   (lambda () (interactive) (insert "if __name__ == '__main__':")))
+
+;; Show line and column number by default
+(line-number-mode 1)
+(column-number-mode 1)
