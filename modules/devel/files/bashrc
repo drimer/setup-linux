@@ -31,3 +31,10 @@ _gsfc() {
 alias gsfc="_gsfc"
 
 alias gsf="git submodule foreach"
+
+_git_list_files_changed() {
+    for c in $(awk {'print $1'}); do
+        git show $c | grep -q "$1" && echo $c;
+    done
+}
+alias git-list-files-changed="_git_list_files_changed"
