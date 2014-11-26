@@ -92,6 +92,17 @@ patch_after_devel.pp() {
     }
 }
 
+patch_before_devel.pp() {
+    echo "Applying patch before devel.pp"
+    [[ -f $HOME/.tmux.conf ]] && cp -f $HOME/.tmux.conf $HOME/.tmux.conf.bak
+}
+
+patch_after_devel.pp() {
+    echo "Applying patch after devel.pp"
+    cp -f $HOME/.tmux.conf.bak $HOME/.tmux.conf
+    rm -f $HOME/.tmux.conf.bak
+}
+
 main() {
     [[ $# < 1 ]] && { usage; exit 1; }
     [[ $EUID != 0 ]] && { echo "WARNING: No root privileges. Some things will not be done."; }
