@@ -98,6 +98,15 @@ patch_after_devel.pp() {
     }
 }
 
+patch_before_utils.pp() {
+    [[ -f $HOME/bin/backup ]] && cp -f $HOME/bin/backup $HOME/bin/backup.bak
+}
+
+patch_after_utils.pp() {
+    cp -f $HOME/bin/backup.bak $HOME/bin/backup
+    rm -f $HOME/bin/backup.bak
+}
+
 main() {
     [[ $# < 1 ]] && { usage; exit 1; }
     [[ $EUID != 0 ]] && { echo "WARNING: No root privileges. Some things will not be done."; }
