@@ -82,16 +82,6 @@ print_manual_setup() {
     cat extra_notes.txt
 }
 
-patch_after_devel.pp() {
-    echo "Applying patches related to $puppet_file"
-    git_user_file="$HOME/.gitconfig.extra"
-    [[ -s $git_user_file ]] && [[ -z "$(grep '\[user\]' $HOME/.gitconfig)" ]] && {
-	echo "Patching ~/.gitconfig"
-	echo "" >>$HOME/.gitconfig
-	cat $git_user_file >>$HOME/.gitconfig
-    }
-}
-
 patch_before_devel.pp() {
     echo "Applying patch before devel.pp"
     [[ -f $HOME/.tmux.conf ]] && cp -f $HOME/.tmux.conf $HOME/.tmux.conf.bak
@@ -101,6 +91,13 @@ patch_after_devel.pp() {
     echo "Applying patch after devel.pp"
     cp -f $HOME/.tmux.conf.bak $HOME/.tmux.conf
     rm -f $HOME/.tmux.conf.bak
+
+    git_user_file="$HOME/.gitconfig.extra"
+    [[ -s $git_user_file ]] && [[ -z "$(grep '\[user\]' $HOME/.gitconfig)" ]] && {
+	echo "Patching ~/.gitconfig"
+	echo "" >>$HOME/.gitconfig
+	cat $git_user_file >>$HOME/.gitconfig
+    }
 }
 
 main() {
