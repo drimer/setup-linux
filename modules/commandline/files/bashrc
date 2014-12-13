@@ -27,7 +27,7 @@ _infinite_ssh() {
     remote_port=$1
     target=$2
     while true; do
-        autossh -C -N -R$remote_port:localhost:22 $target
+        ssh -C -N -R$remote_port:localhost:22 $target
         sleep 10
     done
 }
