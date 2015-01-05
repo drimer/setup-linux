@@ -25,9 +25,9 @@ session = ~/Downloads/rtorrent_session
 
 # Watch a directory for new torrents, and stop those that have been
 # deleted.
-schedule = watch_directory,0,10,load_start=~/Downloads/rtorrent_watch/*.torrent
-schedule = watch_dropbox_dir,0,10,load_start=~/Dropbox/rtorrent_watch/*.torrent
-system.method.set_key = event.download.finished,move_complete,"execute=mv,-u,$d.get_base_path=,~/Downloads;d.set_directory=~/Downloads"
+schedule = watch_directory,0,10,"load_start=~/Downloads/rtorrent_watch/*.torrent,d.set_custom1=~/Downloads/"
+schedule = watch_dropbox_dir,0,10,"load_start=~/Dropbox/rtorrent_watch/*.torrent,d.et_custom1=~/Downloads/"
+system.method.set_key = event.download.finished,move_complete,"d.set_directory=$d.get_custom1=;execute=mv,-u,$d.get_base_path=,$d.get_custom1="
 system.method.set_key = event.download.inserted_new,remove_torrent,"execute=rm,$d.get_tied_to_file="
 
 # Close torrents when diskspace is low.
