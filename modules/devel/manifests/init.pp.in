@@ -27,7 +27,7 @@ class devel {
 
   file_line { 'virtualenvwrapper_is_sourced':
     path => '@HOME_DIR@/.bashrc',
-    line => 'source /usr/local/bin/virtualenvwrapper.sh',
+    line => '[[ -f /usr/local/bin/virtualenvwrapper.sh ]] && source /usr/local/bin/virtualenvwrapper.sh',
     require => File['@HOME_DIR@/.bashrc'],
   }
 
