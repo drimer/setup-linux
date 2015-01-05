@@ -1,5 +1,7 @@
 #!/bin/bash
 
+CANDIDATE_PATH=""  # To change for path where HD is likely to be mounted
+
 set -e
 
 
@@ -27,3 +29,16 @@ move_to_server() {
 
 # Put my stuff here
 move_to_server $HOME/important_stuff/ /home/ssh_user/backup/
+
+[[ -z $HD_PATH ]] == && {
+    [[ -d $CANDIDATE_HDPATH ]] && {
+	HD_PATH=$CANDIDATE_PATH
+    }
+}
+
+[[ -n $HD_PATH ]] && {
+    # Backup to External HD
+    mkdir -p $HD_PATH/backup/;
+    # The following line can be split into different rsyncs if $HOME is too big
+    rsync -va $HOME/ $HD_PATH/backup/;
+}
