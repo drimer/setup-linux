@@ -1,9 +1,9 @@
 ============= MANUAL STEPS =============
 
 Things that need to be manually customised by you:
-1) Add, at least, one window to ~/.tmux.conf
-2) Add pictures to wallpapoz
-3) Log in with your user on Chromium to synchronize bookmarks and/or other things.
+- Add, at least, one window to ~/.tmux.conf
+- Add pictures to wallpapoz
+- Log in with your user on Chromium to synchronize bookmarks and/or other things.
 
 And if you wish:
-5) Remove ~/install_wallpapoz
+- Remove ~/install_wallpapoz
