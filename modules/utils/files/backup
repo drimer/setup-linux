@@ -26,8 +26,15 @@ move_to_server() {
     log_cmd rsync -a $source $SSH_USERNAME@$SSH_SERVER:$dest
 }
 
+move_from_server() {
+    local source=$1
+    local dest=$2
+    [[ "$source" = */ ]] && mkdir -p $dest
+    log_cmd rsync -a $SSH_USERNAME@$SSH_SERVER:$source $dest
+}
 
 # Put my stuff here
+move_from_server /etc/important_config/ /home/user/somewhere_else
 move_to_server $HOME/important_stuff/ /home/ssh_user/backup/
 
 [[ -z $HD_PATH ]] == && {
