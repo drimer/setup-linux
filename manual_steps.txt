@@ -1,7 +1,6 @@
 ============= MANUAL STEPS =============
 
 Things that need to be manually customised by you:
-- Add, at least, one window to ~/.tmux.conf
 - Add pictures to wallpapoz
 - Log in with your user on Chromium to synchronize bookmarks and/or other things.
 
