@@ -6,7 +6,7 @@ set -e
 
 
 [[ -z $SSH_USERNAME || -z $SSHPASS || -z $SSH_SERVER ]] && {
-    echo "SSH_USERNAME, SSHPASS and SSH_SERVER must be set";
+    echo "SSH_USERNAME and SSH_SERVER must be set";
     exit 1;
 }
 
@@ -16,14 +16,14 @@ log_cmd() {
 }
 
 ssh_cmd() {
-    log_cmd sshpass -e -- ssh $SSH_USERNAME@$SSH_SERVER $*
+    log_cmd ssh $SSH_USERNAME@$SSH_SERVER $*
 }
 
 move_to_server() {
     local source=$1
     local dest=$2
-    [[ "$source" = */ ]] && log_cmd sshpass -e -- mkdir -p $dest
-    log_cmd sshpass -e -- rsync -a $source $SSH_USERNAME@$SSH_SERVER:$dest
+    [[ "$source" = */ ]] && ssh_cmd mkdir -p $dest
+    log_cmd rsync -a $source $SSH_USERNAME@$SSH_SERVER:$dest
 }
 
 
