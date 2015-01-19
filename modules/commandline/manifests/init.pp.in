@@ -9,6 +9,7 @@ class commandline {
     'rtorrent': ensure => installed;
     'tree': ensure => installed;
     'tmux': ensure => installed;
+    'xauth': ensure => installed;
   }
 
   file { "@HOME_DIR@/.vimrc":
