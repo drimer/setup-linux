@@ -2,9 +2,6 @@ unbind C-b
 set -g prefix C-a
 bind C-a send-prefix
 
-set -g mouse-resize-pane on
-set -g mouse-select-pane on
-
 
 # Define my custom menu bar
   # status bar colors
