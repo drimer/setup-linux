@@ -67,6 +67,6 @@ export PATH=$HOME/bin:$PATH
 
 
 _passwordless_ssh() {
-    cat ~/.ssh/id_rsa.pub | ssh $1 'cat >> .ssh/authorized_keys'
+    cat ~/.ssh/id_rsa.pub | ssh $* 'cat >> .ssh/authorized_keys'
 }
 alias passwordless_ssh="_passwordless_ssh"
