@@ -49,7 +49,7 @@ class devel {
     require => File['@HOME_DIR@/.bashrc'],
   }
 
-  file { "/usr/bin/my_git_diff":
+  file { "@HOME_DIR@/bin/my_git_diff":
     ensure => present,
     source => 'puppet:///modules/devel/my_git_diff',
     mode => 755,
