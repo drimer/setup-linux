@@ -35,7 +35,9 @@ alias infinite_ssh="_infinite_ssh"
 
 
 _fnd() {
-    find . -name "*$1*"
+    for relpath in $(find . -name "*$1*"); do
+        echo "$(pwd)/${relpath:2}"
+    done
 }
 alias fnd="_fnd"
 
