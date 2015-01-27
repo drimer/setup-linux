@@ -38,3 +38,5 @@ _git_list_files_changed() {
     done
 }
 alias git-list-files-changed="_git_list_files_changed"
+
+alias gitrev="git rev-parse HEAD"
