@@ -11,7 +11,7 @@ alias killstr="_killstr"
 
 
 _tree() {
-    tree -L 2 $*
+    tree -L 2 -I "*.pyc|*~" $*
 }
 alias tree="_tree"
 
