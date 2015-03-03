@@ -14,6 +14,7 @@ class utils {
     "sshpass": ensure=> installed;
     "terminator": ensure => installed;
     "texlive-fonts-recommended": ensure => installed;
+    "texlive-lang-spanish": ensure => installed;
     "texlive-latex-base": ensure => installed;
     "texlive-latex-extra": ensure => installed;
     "texlive-pictures": ensure => installed;
