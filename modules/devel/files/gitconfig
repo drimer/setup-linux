@@ -1,2 +1,5 @@
 [diff]
         external = ~/bin/my_git_diff
+
+[alias]
+	sfe = "!s() { (git rev-parse --show-toplevel && git submodule foreach --quiet --recursive pwd) | parallel --gnu --tagstring {/}: --keep-order --joblog .git_parallel.log \"cd {}; $@;\" ;  }; s"

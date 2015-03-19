@@ -26,11 +26,11 @@ git-diff-branch() {
 }
 
 _gsfc() {
-    git submodule foreach "git checkout $1 || :"
+    gsf "git checkout $1 || :"
 }
 alias gsfc="_gsfc"
 
-alias gsf="git submodule foreach"
+alias gsf="git sfe"
 
 _git_list_files_changed() {
     for c in $(awk {'print $1'}); do
