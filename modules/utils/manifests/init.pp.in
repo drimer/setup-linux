@@ -60,4 +60,10 @@ class utils {
     source => 'puppet:///modules/utils/mediatomb_config_xml',
     require => File['@HOME_DIR@/.mediatomb'],
   }
+
+  file { "@HOME_DIR@/fetch_all_respos.sh":
+    ensure => present,
+    mode => 755,
+    source => 'puppet:///modules/utils/fetch_all_repos.sh',
+  }
 }
