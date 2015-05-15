@@ -7,6 +7,7 @@ Things that need to be manually customised by you:
   1) Launch Emacs
   2) M-x package-install RET simplenote RET
 - Set the user/password in Simplenote plugin for Emacs
+- Open Zeal and download the documentations you need
 
 And if you wish:
 - Remove ~/install_wallpapoz

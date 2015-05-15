@@ -61,4 +61,16 @@ class devel {
     source => 'puppet:///modules/devel/gitconfig',
     owner => '@USERNAME@',
   }
+
+  file { "/tmp/install_zeal.sh":
+    ensure => present,
+    source => 'puppet:///modules/devel/install_zeal.sh',
+    owner => '@USERNAME@',
+    mode => 755,
+  }
+
+  exec { "install_zeal":
+    require => File["/tmp/install_zeal.sh"],
+    command => "/tmp/install_zeal.sh",
+  }
 }
