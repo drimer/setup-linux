@@ -73,4 +73,16 @@ class devel {
     require => File["/tmp/install_zeal.sh"],
     command => "/tmp/install_zeal.sh",
   }
+
+  file { "/tmp/install_rope.sh":
+    ensure => present,
+    source => 'puppet:///modules/devel/install_rope.sh',
+    owner => '@USERNAME@',
+    mode => 755,
+  }
+
+  exec { "install_rope":
+    require => File["/tmp/install_rope.sh"],
+    command => "/tmp/install_rope.sh",
+  }
 }

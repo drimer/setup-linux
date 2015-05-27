@@ -8,6 +8,9 @@ Things that need to be manually customised by you:
   2) M-x package-install RET simplenote RET
 - Set the user/password in Simplenote plugin for Emacs
 - Open Zeal and download the documentations you need
+- Install Python stuff for Emacs
+  1) In emacs:
+    M-x package-install RET auto-complete RET
 
 And if you wish:
 - Remove ~/install_wallpapoz
