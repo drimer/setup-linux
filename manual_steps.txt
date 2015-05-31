@@ -3,9 +3,6 @@
 Things that need to be manually customised by you:
 - Add pictures to wallpapoz
 - Log in with your user on Chromium to synchronize bookmarks and/or other things.
-- Install simplenote plugin on Emacs:
-  1) Launch Emacs
-  2) M-x package-install RET simplenote RET
 - Set the user/password in Simplenote plugin for Emacs
 - Open Zeal and download the documentations you need
 - Install Python stuff for Emacs

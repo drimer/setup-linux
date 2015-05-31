@@ -45,15 +45,6 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
 
-
-;; Install simplenote plugin
-(require 'simplenote)
-(setq simplenote-email "me@gmail.com")
-(setq simplenote-password "mypassword")
-(simplenote-setup)
-(simplenote-sync-notes)
-
-
 ;; Set up stuff for Python development
 (ido-mode)
 (global-set-key (kbd "C-c p") 'python-mode) ; Alt+r
