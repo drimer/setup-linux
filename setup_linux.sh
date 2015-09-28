@@ -27,6 +27,8 @@
 #
 # http://puppetlabs.com/
 
+POST_SCRIPT_FILENAME="./post_script.sh"
+
 usage() { echo "$0 <manifest.pp> [<manifest2.pp>, ...]"; }
 
 process_in_files() {
@@ -131,6 +133,11 @@ main() {
     done
 
     delete_processed_files
+
+    [[ -f $POST_SCRIPT_FILENAME ]] && {
+	echo "Running post-script";
+	exec $POST_SCRIPT_FILENAME;
+    }
 
     print_manual_setup
 }
