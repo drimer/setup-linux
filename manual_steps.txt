@@ -3,7 +3,6 @@
 Things that need to be manually customised by you:
 - Add pictures to wallpapoz
 - Log in with your user on Chromium to synchronize bookmarks and/or other things.
-- Set the user/password in Simplenote plugin for Emacs
 - Open Zeal and download the documentations you need
 - Install Python stuff for Emacs
   1) In emacs:
@@ -11,3 +10,4 @@ Things that need to be manually customised by you:
 
 And if you wish:
 - Remove ~/install_wallpapoz
+- Remove ~/install_jdownloader
