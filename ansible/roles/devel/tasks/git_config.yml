@@ -1,0 +1,11 @@
+- name: Copy .gitconfig
+  copy: src=home/.gitconfig dest=~/
+
+- name: Replace github user email
+  replace: dest=~/.gitconfig regexp="git_email" replace="{{ git_email }}"
+
+- name: Replace github user name
+  replace: dest=~/.gitconfig regexp="git_name" replace="{{ git_name }}"
+
+- name: Copy my custom git-diff binary
+  copy: src=my_git_diff dest=~/bin/my_git_diff

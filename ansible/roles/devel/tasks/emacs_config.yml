@@ -1,0 +1,2 @@
+- name: Copy emacs config
+  copy: src=home/.emacs dest=~/

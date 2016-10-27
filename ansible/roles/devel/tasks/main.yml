@@ -1,0 +1,4 @@
+- include: tasks/system_packages.yml
+- include: tasks/git_config.yml
+- include: tasks/emacs_config.yml
+- include: tasks/bash_config.yml

@@ -1,0 +1,18 @@
+- name: Ensure devel packages are installed
+  apt: name={{item}} state=present
+  with_items:
+    - emacs
+    - gitk
+    - git-gui
+    - meld
+    - pylint
+    - python-epydoc
+    - python-pip
+  remote_user: root
+
+- name: Copy Zeal installation
+  copy: src=install_zeal.sh dest=~/install_zeal.sh mode=755
+  remote_user: root
+
+- shell: ~/install_zeal.sh
+  remote_user: root

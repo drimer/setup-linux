@@ -1,0 +1,2 @@
+- name: Ensure devel bashrc is included
+  lineinfile: dest=~/.bashrc line="source ~/.devel.bashrc" state=present
