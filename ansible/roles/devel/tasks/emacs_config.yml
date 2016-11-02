@@ -1,2 +1,6 @@
 - name: Copy emacs config
   copy: src=home/.emacs dest=~/
+
+- name: Install Rope
+  shell: pip install rope
+  remote_user: root

@@ -2,3 +2,4 @@
 - include: tasks/git_config.yml
 - include: tasks/emacs_config.yml
 - include: tasks/bash_config.yml
+- include: tasks/python_config.yml

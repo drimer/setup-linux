@@ -1,0 +1,12 @@
+- name: Install virtualenv
+  shell: pip install virtualenv
+  remote_user: root
+
+- name: Install virtualenvwrapper
+  shell: pip install virtualenvwrapper
+
+- name: Copy .venv.bashrc
+  copy: src=home/.venv.bashrc dest=~/
+
+- name: Ensure .venv.bashrc is sourced
+  lineinfile: dest=~/.bashrc line="source ~/.venv.bashrc"
