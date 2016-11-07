@@ -1,0 +1,4 @@
+- include: tasks/jdownloader.yml
+- include: tasks/ssh_config.yml
+- include: tasks/system_packages.yml
+- include: tasks/wallpapoz.yml

@@ -1,0 +1,2 @@
+- name: Enable X11 forwarding for ssh
+  lineinfile: dest=/etc/ssh/ssh_config line="ForwardX11 yes" state=present

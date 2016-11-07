@@ -1,0 +1,11 @@
+- name: Copy jDownloader installator
+  copy: src=install_jdownloader.sh dest=~/install_jdownloader.sh mode=755
+  remote_user: root
+
+- name: Install jDownloader
+  shell: ~/install_jdownloader.sh
+  remote_user: root
+
+- name: Clean up jDownloadter installator
+  shell: rm ~/install_jownloader.sh
+  remote_user: root

@@ -1,0 +1,8 @@
+- name: Copy wallpapoz installator
+  copy: src=install_wallpapoz.sh dest=~/install_wallpapoz.sh mode=755
+
+- name: Install wallpapoz
+  shell: ~/install_wallpapoz.sh
+
+- name: Clean up wallpapoz installator
+  shell: rm ~/install_wallpapoz.sh

@@ -1,0 +1,16 @@
+- name: Ensure gnome packages are installed
+  apt: name={{item}} state=present
+  with_items:
+    - gnome-do
+  remote_user: root
+
+- name: Copy minidlna installator
+  copy: src=install_minidlna.sh dest=~/install_minidlna.sh mode=755
+  remote_user: root
+
+- name: Install minidlna
+  shell: ~/install_minidlna.sh
+  remote_user: root
+
+- name: Cleanup minidlna installator
+  shell: rm ~/install_minidlna.sh

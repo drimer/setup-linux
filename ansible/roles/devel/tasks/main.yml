@@ -3,3 +3,6 @@
 - include: tasks/emacs_config.yml
 - include: tasks/bash_config.yml
 - include: tasks/python_config.yml
+
+- name: Create src directory
+  shell: mkdir -p ~/src
